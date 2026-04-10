@@ -5,6 +5,17 @@ import uvicorn
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+# Asegúrate de que esto esté justo después de app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Esto permite que GitHub Pages se conecte
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Modelo de datos para la reserva
 class Reserva(BaseModel):
     cliente: str
