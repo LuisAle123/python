@@ -10,7 +10,11 @@ from fastapi.middleware.cors import CORSMiddleware
 # Asegúrate de que esto esté justo después de app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Esto permite que GitHub Pages se conecte
+    # Solo permites tus sitios oficiales
+    allow_origins=[
+        "https://recetasmarinas.netlify.app/", 
+        "http://localhost:5500" # Para tus pruebas locales
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
