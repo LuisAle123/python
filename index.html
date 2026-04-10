@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reserva Online - Van-Tec</title>
+</head>
+<body>
+    <h2>Reserva tu mesa</h2>
+    <form id="reservaForm">
+        <input type="text" id="cliente" placeholder="Nombre completo" required><br>
+        <input type="text" id="telefono" placeholder="Teléfono" required><br>
+        <input type="number" id="personas" placeholder="Número de personas" required><br>
+        <input type="datetime-local" id="fecha" required><br>
+        
+        <p><small>Al reservar, aceptas nuestro Aviso de Privacidad (LFPDPPP).</small></p> 
+        
+        <button type="submit">Confirmar Reserva</button>
+    </form>
+
+    <script>
+        document.getElementById('reservaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const datos = {
+                cliente: document.getElementById('cliente').value,
+                telefono: document.getElementById('telefono').value,
+                personas: parseInt(document.getElementById('personas').value),
+                fecha: document.getElementById('fecha').value,
+                estado: "Pendiente"
+            };
+
+            // Dirección de tu servidor en AWS o local
+            const response = await fetch('https://sistema-de-reservas-w1p9.onrender.com/reservar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            });
+
+            if (response.ok) {
+                alert("¡Reserva enviada! Te esperamos.");
+            }
+        });
+    </script>
+</body>
+</html>
