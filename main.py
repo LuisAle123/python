@@ -24,7 +24,7 @@ class Reserva(BaseModel):
     fecha: str
     personas: int
     estado: str = "Pendiente" # Pendiente, Pagado, Cancelado
-    metodo_pago: str = "N/A"
+    metodo_pago: str # Ahora es obligatorio enviarlo desde la web
 
 # Base de datos temporal en memoria (en producción usa PostgreSQL) [cite: 233]
 db_reservas = []
