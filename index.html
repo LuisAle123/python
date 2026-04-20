@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva Online - Van-Tec</title>
+    <title>Reserva Online - Mariscos</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -63,20 +63,32 @@
             padding-left: 5px;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 12px;
             border: 2px solid #eee;
             border-radius: 8px;
-            box-sizing: border-box; /* Crucial para que no se salga del contenedor */
+            box-sizing: border-box;
             font-size: 1em;
+            font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
         }
 
-        input:focus {
+        input:focus, select:focus {
             border-color: var(--azul-claro);
             outline: none;
             box-shadow: 0 0 8px rgba(0, 119, 182, 0.2);
+        }
+
+        .costo-info {
+            background-color: #e7f3f9;
+            color: var(--azul-marino);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--azul-claro);
         }
 
         .aviso-privacidad {
@@ -103,11 +115,11 @@
             background-color: var(--azul-claro);
         }
 
-        button:active {
-            transform: scale(0.98);
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
 
-        /* Estilo para el mensaje de éxito */
         .success-msg {
             display: none;
             color: #2d6a4f;
@@ -122,11 +134,15 @@
 
     <div class="container">
         <div class="logo-area">
-            <h2>Recetas Marinas</h2>
-            <p>Haz tu reservación, costo: $50 (pago en establecimiento)</p>
+            <h2>Mariscos</h2>
+            <p>Reservas Marinas</p>
         </div>
 
         <div id="mensajeExito" class="success-msg">¡Reserva enviada con éxito!</div>
+
+        <div class="costo-info">
+            Costo de reserva: $10.00 USD por persona
+        </div>
 
         <form id="reservaForm">
             <div class="form-group">
@@ -150,15 +166,12 @@
             </div>
 
             <div class="form-group">
-    <p style="color: var(--azul-marino); font-weight: 600; margin-bottom: 10px;">
-        Costo de reserva: $10.00 USD por persona
-    </p>
-    <label for="metodo_pago">Método de pago preferido</label>
-    <select id="metodo_pago" style="width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px;">
-        <option value="Efectivo">Efectivo (En sucursal)</option>
-        <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
-    </select>
-</div>
+                <label for="metodo_pago">Método de pago preferido</label>
+                <select id="metodo_pago" required>
+                    <option value="Efectivo">Efectivo (En sucursal)</option>
+                    <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+                </select>
+            </div>
             
             <p class="aviso-privacidad">
                 Al confirmar, aceptas que tus datos sean tratados conforme a nuestro 
@@ -175,7 +188,6 @@
             const btn = document.getElementById('btnEnviar');
             const msg = document.getElementById('mensajeExito');
 
-            // Feedback visual: deshabilitar botón mientras envía
             btn.innerText = "Enviando...";
             btn.disabled = true;
 
@@ -184,8 +196,8 @@
                 telefono: document.getElementById('telefono').value,
                 personas: parseInt(document.getElementById('personas').value),
                 fecha: document.getElementById('fecha').value,
+                metodo_pago: document.getElementById('metodo_pago').value,
                 estado: "Pendiente"
-                metodo_pago: document.getElementById('metodo_pago').value, // Nuevo campo
             };
 
             try {
@@ -198,11 +210,12 @@
                 if (response.ok) {
                     msg.style.display = "block";
                     document.getElementById('reservaForm').reset();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
                     alert("Hubo un error en el servidor. Intenta de nuevo.");
                 }
             } catch (error) {
-                alert("No se pudo conectar con el servidor de Van-Tec.");
+                alert("No se pudo conectar con el servidor de Mariscos.");
             } finally {
                 btn.innerText = "Confirmar Reserva";
                 btn.disabled = false;
