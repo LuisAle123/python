@@ -148,6 +148,17 @@
                 <label for="fecha">Fecha y Hora</label>
                 <input type="datetime-local" id="fecha" required>
             </div>
+
+            <div class="form-group">
+    <p style="color: var(--azul-marino); font-weight: 600; margin-bottom: 10px;">
+        Costo de reserva: $10.00 USD por persona
+    </p>
+    <label for="metodo_pago">Método de pago preferido</label>
+    <select id="metodo_pago" style="width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px;">
+        <option value="Efectivo">Efectivo (En sucursal)</option>
+        <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+    </select>
+</div>
             
             <p class="aviso-privacidad">
                 Al confirmar, aceptas que tus datos sean tratados conforme a nuestro 
@@ -174,6 +185,7 @@
                 personas: parseInt(document.getElementById('personas').value),
                 fecha: document.getElementById('fecha').value,
                 estado: "Pendiente"
+                metodo_pago: document.getElementById('metodo_pago').value, // Nuevo campo
             };
 
             try {
