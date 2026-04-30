@@ -18,16 +18,17 @@ class Reserva(BaseModel):
     telefono: str
     fecha: str
     personas: int
-    metodo_pago: str
     estado: str
-    total_estimado: float # Nuevo campo para capturar la suma de la web
+    metodo_pago: str
+    total_estimado: float
+    orden: list = [] # Lista de platillos seleccionados
 
 db_reservas = []
 
 @app.post("/reservar")
 def crear_reserva(reserva: Reserva):
     db_reservas.append(reserva.dict())
-    return {"status": "Reserva enviada"}
+    return {"status": "Reserva exitosa"}
 
 @app.get("/lista_reservas")
 def obtener_reservas():
@@ -36,9 +37,9 @@ def obtener_reservas():
 @app.put("/pagar/{index}")
 def procesar_pago(index: int, metodo: str):
     if 0 <= index < len(db_reservas):
-        db_reservas[index]["estado"] = "Pagado/Confirmado"
+        db_reservas[index]["estado"] = "Confirmado"
         db_reservas[index]["metodo_pago"] = metodo
-        return {"status": "Actualizado"}
+        return {"status": "Pago registrado"}
     return {"error": "No encontrado"}
 
 if __name__ == "__main__":
