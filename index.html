@@ -14,11 +14,24 @@
         nav { display: flex; justify-content: center; background: var(--marino); position: sticky; top: 0; z-index: 100; }
         nav button { background: none; border: none; color: white; padding: 15px 30px; cursor: pointer; font-weight: 600; font-family: 'Poppins'; }
         nav button.active { border-bottom: 4px solid var(--coral); background: rgba(255,255,255,0.1); }
-        .section { display: none; padding: 30px 20px; max-width: 800px; margin: auto; }
+        
+        .section { display: none; padding: 30px 20px; max-width: 1000px; margin: auto; }
         .section.active { display: block; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .platillo { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
-        .btn-add { background: var(--marino); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: 600; }
+        
+        /* Ajustes del Menú */
+        .menu-category { color: var(--marino); border-bottom: 2px solid var(--coral); margin: 40px 0 20px; padding-bottom: 10px; font-weight: 600; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        .platillo { background: white; padding: 0 0 20px 0; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; overflow: hidden; transition: transform 0.3s; }
+        .platillo:hover { transform: translateY(-5px); }
+        .platillo img { width: 100%; height: 180px; object-fit: cover; background-color: #e0e0e0; margin-bottom: 15px; }
+        .platillo h3 { margin: 0 15px; font-size: 1.2rem; color: #333; }
+        .platillo p { color: var(--marino); font-weight: 600; font-size: 1.1rem; margin: 10px 0; }
+        .platillo small { display: block; padding: 0 15px 10px; color: #666; font-size: 0.8rem; }
+        
+        .btn-add { background: var(--marino); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; width: 80%; font-weight: 600; transition: background 0.3s; }
+        .btn-add:hover { background: #005f8d; }
+
         .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 15px; text-align: left; }
         input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
@@ -52,11 +65,119 @@
 </div>
 
 <div id="menu" class="section">
-    <h2>Especialidades</h2>
+    <!-- SECCIÓN PAQUETES -->
+    <h2 class="menu-category">Combos y Paquetes</h2>
     <div class="menu-grid">
-        <div class="platillo"><h3>Ceviche Mixto</h3><p>$150.00</p><button class="btn-add" onclick="addToCart('Ceviche Mixto', 150)">Añadir</button></div>
-        <div class="platillo"><h3>Pescado Frito</h3><p>$200.00</p><button class="btn-add" onclick="addToCart('Pescado Frito', 200)">Añadir</button></div>
-        <div class="platillo"><h3>Cerveza Fría</h3><p>$45.00</p><button class="btn-add" onclick="addToCart('Cerveza', 45)">Añadir</button></div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1510629954389-c1e0da47d415?auto=format&fit=crop&w=500&q=60" alt="Combo Familiar">
+            <h3>Combo Familiar</h3>
+            <small>Pescado frito grande, arroz, ensalada y 1L de agua fresca.</small>
+            <p>$450.00</p>
+            <button class="btn-add" onclick="addToCart('Combo Familiar', 450)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c173f0?auto=format&fit=crop&w=500&q=60" alt="Paquete Pareja">
+            <h3>Paquete Pareja</h3>
+            <small>2 Ceviches mixtos + 2 Cervezas nacionales.</small>
+            <p>$320.00</p>
+            <button class="btn-add" onclick="addToCart('Paquete Pareja', 320)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1535400255456-9842f9243327?auto=format&fit=crop&w=500&q=60" alt="Mariscada Especial">
+            <h3>Mariscada Especial</h3>
+            <small>Surtido de camarones, pulpo y filete para 3 personas.</small>
+            <p>$600.00</p>
+            <button class="btn-add" onclick="addToCart('Mariscada Especial', 600)">Añadir</button>
+        </div>
+    </div>
+
+    <!-- SECCIÓN COMIDAS -->
+    <h2 class="menu-category">Platillos Especiales</h2>
+    <div class="menu-grid">
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1535400255456-9842f9243327?auto=format&fit=crop&w=500&q=60" alt="Ceviche Mixto">
+            <h3>Ceviche Mixto</h3>
+            <p>$150.00</p>
+            <button class="btn-add" onclick="addToCart('Ceviche Mixto', 150)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1526233511134-b8d04758fc35?auto=format&fit=crop&w=500&q=60" alt="Pescado Frito">
+            <h3>Pescado Frito</h3>
+            <p>$200.00</p>
+            <button class="btn-add" onclick="addToCart('Pescado Frito', 200)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1563124417-6803861d67ad?auto=format&fit=crop&w=500&q=60" alt="Aguachile Verde">
+            <h3>Aguachile Verde</h3>
+            <p>$180.00</p>
+            <button class="btn-add" onclick="addToCart('Aguachile Verde', 180)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=500&q=60" alt="Tacos Gobernador">
+            <h3>Tacos Gobernador</h3>
+            <small>Orden de 3 tacos con queso y camarón.</small>
+            <p>$135.00</p>
+            <button class="btn-add" onclick="addToCart('Tacos Gobernador', 135)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=500&q=60" alt="Arroz a la Tumbada">
+            <h3>Arroz a la Tumbada</h3>
+            <p>$190.00</p>
+            <button class="btn-add" onclick="addToCart('Arroz a la Tumbada', 190)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1590412200988-a436bbd97a99?auto=format&fit=crop&w=500&q=60" alt="Cóctel de Camarón">
+            <h3>Cóctel de Camarón</h3>
+            <p>$160.00</p>
+            <button class="btn-add" onclick="addToCart('Cóctel de Camarón', 160)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1534080564672-68262214adda?auto=format&fit=crop&w=500&q=60" alt="Sopa de Mariscos">
+            <h3>Sopa de Mariscos</h3>
+            <p>$170.00</p>
+            <button class="btn-add" onclick="addToCart('Sopa de Mariscos', 170)">Añadir</button>
+        </div>
+    </div>
+
+    <!-- SECCIÓN BEBIDAS -->
+    <h2 class="menu-category">Bebidas y Coctelería</h2>
+    <div class="menu-grid">
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=60" alt="Margarita">
+            <h3>Margarita de Limón</h3>
+            <p>$95.00</p>
+            <button class="btn-add" onclick="addToCart('Margarita', 95)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=500&q=60" alt="Cerveza">
+            <h3>Cerveza Fría</h3>
+            <p>$45.00</p>
+            <button class="btn-add" onclick="addToCart('Cerveza Fría', 45)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1582234306487-0e2f1e29e86a?auto=format&fit=crop&w=500&q=60" alt="Michelada">
+            <h3>Michelada Especial</h3>
+            <p>$75.00</p>
+            <button class="btn-add" onclick="addToCart('Michelada Especial', 75)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=60" alt="Refresco">
+            <h3>Refresco de Lata</h3>
+            <p>$35.00</p>
+            <button class="btn-add" onclick="addToCart('Refresco de Lata', 35)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=500&q=60" alt="Agua Fresca">
+            <h3>Agua de Horchata (1L)</h3>
+            <p>$50.00</p>
+            <button class="btn-add" onclick="addToCart('Agua de Horchata', 50)">Añadir</button>
+        </div>
+        <div class="platillo">
+            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=60" alt="Limonada">
+            <h3>Limonada Mineral</h3>
+            <p>$40.00</p>
+            <button class="btn-add" onclick="addToCart('Limonada Mineral', 40)">Añadir</button>
+        </div>
     </div>
 </div>
 
